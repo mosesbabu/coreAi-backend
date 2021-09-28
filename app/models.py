@@ -1,17 +1,17 @@
-from . import db
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column,TIMESTAMP
+from sqlalchemy.dialects.mysql import INTEGER
 
 #class to store the dataset values
+Base = declarative_base()
+metadata = Base.metadata
 
-class Dataset(db.Model):
+class Dataset(Base):
     __tablename__ = 'dataset'
-    id = db.Column(db.Integer,primary_key = True)
-    amount = db.Column(db.Integer)
-    date = db.Column(db.DateTime, default=db.func.now())
+    id = Column(INTEGER,primary_key = True)
+    amount = Column(INTEGER)
+    date = Column(TIMESTAMP)
     
-
-    def __repr__(self):
-        return f'Dataset {self.id}'
-
 
 
 
