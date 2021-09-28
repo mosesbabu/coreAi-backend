@@ -21,8 +21,7 @@ def index ():
     data=cursor.fetchall()
     if data:
         return jsonify({
-                "amount": data.amount,
-                "date": data.date,
+                "data": data
             })
     else:    
         return {},404
