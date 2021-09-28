@@ -17,7 +17,8 @@ mysql = MySQL(app)
 def index ():
     
     cursor = mysql.connection.cursor()
-    data=cursor.execute(" SELECT * FROM dataset") or []
+    cursor.execute(" SELECT * FROM dataset") or []
+    data=cursor.fetchall()
     if data:
         return jsonify({
                 "amount": data.amount,
