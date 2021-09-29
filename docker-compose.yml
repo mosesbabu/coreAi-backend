@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+    web:
+        build: ./app
+		restart: always
+        command: python app.py
+        volumes:
+            - ./app/:/usr/src/app/
+		links:
+         - db:mysql	
+        ports:
+            - 8000:8000
+        environment:
+		    - SECRET_KEY:
+		    - MYSQL_ROOT_PASSWORD
+            - DB_HOST=
+            - DB_DATABASE=
+            - DB_USERNAME=
+            - DB_PASSWORD=
+        depends_on:
+            - db
+     db:
+        image: mysql:5.7
+        restart: always
+       
+        ports:
+           - "3306:3306"
+      environment:
+         MYSQL_USER: 
+         MYSQL_PASSWORD: 
+         MYSQL_ROOT_PASSWORD: 
+         MYSQL_DATABASE: 

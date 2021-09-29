@@ -40,7 +40,7 @@ try:
             data_dict[column_list[i]] = row[i]
        
         jsonData_list.append(data_dict)
-        
+    
 
 
     @app.route('/api/retrieve', methods=['GET'])
