@@ -1,5 +1,5 @@
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify,request
 import json
 import mysql.connector
 from mysql.connector import Error
@@ -46,10 +46,24 @@ try:
     def get_data():
         return jsonify({'dataset': jsonData_list})
     
-    
+    @app.route('/api/add', methods = ['POST'])
+    def create():
+   
+        amount = request.json['amount']
+        amount_one = request.json['amount_one']
+        amount_two = request.json['amount_two']
+        amount_three = request.json['amount_three']
+        amount_four = request.json['amount_four']
+        date = request.json['date']
+        cursor = mysql.connection.cursor()
+        cursor.execute(''' INSERT INTO dataset VALUES(%s,%s,%s,%s,%s,%s)''',(amount,amount_one,amount_two,amount_three,amount_four,date))
+        mysql.connection.commit()
+        cursor.close()
+        return f"Done!!"
 
 except Error as e:
     print("Error while connecting to Mysql", e)
+    
 finally:
     connection.close()
     print (" mysql closed")
