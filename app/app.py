@@ -13,7 +13,7 @@ app.config['MYSQL_DB'] = 'coreai'
 
 mysql = MySQL(app)
     
-@app.route('/api', methods = ['GET'])
+@app.route('/api/retreive', methods = ['GET'])
 def index ():
     
     cursor = mysql.connection.cursor()
